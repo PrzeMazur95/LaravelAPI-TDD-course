@@ -14,11 +14,11 @@ class TodoListTest extends TestCase
      */
     public function test_the_application_returns_a_successful_response()
     {
-        $this->withoutExceptionHandling();
+
         //preparation
 
         //action
-        $response = $this->getJson('todo-list');
+        $response = $this->getJson(route('todo-list'));
         //assertion
         $this->assertCount(1, ($response->json()));
     }
