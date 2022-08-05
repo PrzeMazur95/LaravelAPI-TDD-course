@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\TodoList;
+use Illuminate\Http\Request;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Response;
@@ -29,8 +30,19 @@ class TodoListController extends Controller
         return response($lists);
     }
 
+    /**
+     * @param TodoList $todolist
+     *
+     * @return Application|ResponseFactory|Response
+     */
     public function show(TodoList $todolist)
     {
         return response($todolist);
+    }
+
+    public function store(Request $request)
+    {
+        $list = $this->TodoList::create($request->all());
+        return response($list, Response::HTTP_CREATED);
     }
 }

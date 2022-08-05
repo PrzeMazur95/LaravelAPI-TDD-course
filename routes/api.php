@@ -21,3 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/', [TodoListController::class, 'index'])->name('todo-list');
 Route::get('todo-list/{todolist}', [TodoListController::class, 'show'])->name('todo-list.show');
+Route::post('todo-list', [TodoListController::class, 'store'])->name('todo-list.store');
