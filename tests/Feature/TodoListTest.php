@@ -14,6 +14,7 @@ class TodoListTest extends TestCase
 
     private $list;
 
+    //works like a construct, creates a new list every time when tests starts
     public function setUp(): void
     {
         parent::setUp();
@@ -74,5 +75,13 @@ class TodoListTest extends TestCase
         $this->deleteJson(route('todo-list.destroy', $this->list->id))->assertNoContent();
 
         $this->assertDatabaseMissing('todo_lists', ['name' => $this->list->name]);
+    }
+
+    public function test_if_we_could_update_todo_list()
+    {
+        $this->patchJson(route('todo-list.update', $this->list->id), ['name' => 'Updated Name'])
+        ->assertOk();
+
+        $this->assertDatabaseHas('todo_lists', ['id' => $this->list->id, 'name' => 'Updated Name']);
     }
 }
