@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Response;
-use App\Http\Requests\TodoListStoreRequest;
+use App\Http\Requests\TodoListNameRequiredRequest;
 
 class TodoListController extends Controller
 {
@@ -41,7 +41,7 @@ class TodoListController extends Controller
         return response($todolist);
     }
 
-    public function store(TodoListStoreRequest $request)
+    public function store(TodoListNameRequiredRequest $request)
     {
         $list = $this->TodoList::create($request->all());
         return response($list, Response::HTTP_CREATED);
