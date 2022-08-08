@@ -53,7 +53,7 @@ class TodoListController extends Controller
         return response('', Response::HTTP_NO_CONTENT);
     }
 
-    public function update(Request $request, Todolist $list)
+    public function update(TodoListNameRequiredRequest $request, Todolist $list)
     {
         $list->update($request->all());
         return $list;
