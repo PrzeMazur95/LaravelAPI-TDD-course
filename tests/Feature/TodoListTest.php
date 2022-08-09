@@ -14,11 +14,10 @@ class TodoListTest extends TestCase
 
     private $list;
 
-    //works like a construct, creates a new list every time when tests starts
     public function setUp(): void
     {
         parent::setUp();
-        $this->list = TodoList::factory()->create(['name' => 'my list']);
+        $this->list = $this->createTodoList(['name' => 'my list']);
     }
 
     /**
@@ -53,7 +52,7 @@ class TodoListTest extends TestCase
     public function test_store_new_todo_list(): void
     {
         //preparation
-        $list = TodoList::factory()->make();
+        $list = $this->createTodoList();
         //action
         $response = $this->postJson(route('todo-list.store', ['name' => $list->name]))->assertCreated()->json();
         //assertion
