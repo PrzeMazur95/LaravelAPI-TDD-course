@@ -83,4 +83,14 @@ class TodoListTest extends TestCase
 
         $this->assertDatabaseHas('todo_lists', ['id' => $this->list->id, 'name' => 'Updated Name']);
     }
+
+    public function test_if_we_could_not_update_list_because_of_no_typed_name()
+    {
+        $this->withExceptionHandling();
+
+        $this->patchJson(route('todo-list.update', $this->list->id), ['name'=>''])
+        ->assertUnprocessable()
+        ->assertJsonValidationErrors('name');
+       
+    }
 }
