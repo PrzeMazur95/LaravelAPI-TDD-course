@@ -8,15 +8,14 @@ use Tests\TestCase;
 
 class ItemTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
-    public function test_example()
+    public function test_fetch_all_items_of_a_todo_list()
     {
-        $response = $this->get('/');
+        //preparation
+        Task::factory()->create();
+        //action
+        $response = $this->get(route('task.index'))->assertOk()->json();
+        //assertion
+        $this->assertEquals(1, count($response));
 
-        $response->assertStatus(200);
     }
 }
