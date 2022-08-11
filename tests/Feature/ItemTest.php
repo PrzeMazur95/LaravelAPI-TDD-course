@@ -27,12 +27,22 @@ class ItemTest extends TestCase
 
     public function test_if_we_could_add_new_task()
     {
-        //preparation
-
+        //preparation - below make does not stores task in db, create do
+        $task = Task::factory()->make();
         //action
-        $this->postJson(route('task.store'), ['title'=> 'my first task'])
+        $this->postJson(route('task.store'), ['title'=> $task->title])
         ->assertCreated();
         //assertion
-        $this->assertDatabaseHas('tasks',['title'=>'my first task']);
+        $this->assertDatabaseHas('tasks',['title'=> $task->title]);
+    }
+
+    public function test_if_we_colud_delete_a_task()
+    {
+        //preapration
+        $task = Task::factory()->create();
+        //action
+        $this->deleteJson(route('task.destroy', [$task->id]))->assertNoContent();
+        //assertion
+        $this->assertDatabaseMissing('tasks', ['title' => $task->title]);
     }
 }
