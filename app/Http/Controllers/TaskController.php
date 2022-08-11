@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Task;
+use App\Http\Requests\StoreNewTaskRequest;
 
 class TaskController extends Controller
 {
@@ -18,9 +19,9 @@ class TaskController extends Controller
         return response($tasks);
     }
 
-    public function store()
+    public function store(StoreNewTaskRequest $request)
     {
-        $task = $this->task::create(['title'=>'my first task']);
+        $task = $this->task::create($request->all());
         return $task;
     }
 }

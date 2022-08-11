@@ -30,7 +30,7 @@ class ItemTest extends TestCase
         //preparation
 
         //action
-        $this->postJson(route('task.store'), ['title'=> 'my frist task'])
+        $this->postJson(route('task.store'), ['title'=> 'my first task'])
         ->assertCreated();
         //assertion
         $this->assertDatabaseHas('tasks',['title'=>'my first task']);
