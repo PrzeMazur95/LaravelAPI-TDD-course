@@ -16,7 +16,7 @@ class ItemTest extends TestCase
     public function test_fetch_all_items_of_a_todo_list()
     {
         //preparation
-        $task = Task::factory()->create();
+        $task = $this->createTask();
         //action
         $response = $this->get(route('task.index'))->assertOk()->json();
         //assertion
@@ -39,7 +39,7 @@ class ItemTest extends TestCase
     public function test_if_we_colud_delete_a_task()
     {
         //preapration
-        $task = Task::factory()->create();
+        $task = $this->createTask();
         //action
         $this->deleteJson(route('task.destroy', [$task->id]))->assertNoContent();
         //assertion

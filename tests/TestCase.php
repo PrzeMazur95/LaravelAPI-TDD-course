@@ -4,6 +4,7 @@ namespace Tests;
 
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use App\Models\TodoList;
+use App\Models\Task;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -17,6 +18,10 @@ abstract class TestCase extends BaseTestCase
 
     public function createTodoList($args = []){
         return $todoList = TodoList::factory()->create($args);
+    }
+
+    public function createTask($args = []){
+        return $task = Task::factory()->create($args);
     }
         
     
