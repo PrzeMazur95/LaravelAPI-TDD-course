@@ -3,7 +3,7 @@
 use App\Http\Controllers\TodoListController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\TaskController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -20,3 +20,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('todo-list', TodoListController::class);
+
+Route::get('task', [TaskController::class,'index'])->name('task.index');

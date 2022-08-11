@@ -10,6 +10,7 @@ use Tests\TestCase;
 class TodoListTest extends TestCase
 {
 
+    //runs db migrations before every test
     use RefreshDatabase;
 
     private $list;
