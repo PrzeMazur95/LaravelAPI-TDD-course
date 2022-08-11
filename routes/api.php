@@ -22,3 +22,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource('todo-list', TodoListController::class);
 
 Route::get('task', [TaskController::class,'index'])->name('task.index');
+Route::post('task', [TaskController::class, 'store'])->name('task.store');

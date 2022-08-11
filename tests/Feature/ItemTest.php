@@ -24,4 +24,15 @@ class ItemTest extends TestCase
         $this->assertEquals($task->title, $response[0]['title']);
 
     }
+
+    public function test_if_we_could_add_new_task()
+    {
+        //preparation
+
+        //action
+        $this->postJson(route('task.store'), ['title'=> 'my frist task'])
+        ->assertCreated();
+        //assertion
+        $this->assertDatabaseHas('tasks',['title'=>'my first task']);
+    }
 }
