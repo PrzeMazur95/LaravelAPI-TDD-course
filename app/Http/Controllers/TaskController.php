@@ -17,15 +17,15 @@ class TaskController extends Controller
     }
     public function index(TodoList $todo_list)
     {
-        $tasks = $this->task::where(['todo_list_id' => $todo_list->id])->get();
+        $tasks = $todo_list->tasks;;
         return response($tasks);
     }
 
     public function store(StoreNewTaskRequest $request, TodoList $todo_list)
     {
-        $request['todo_list_id'] = $todo_list->id;
-        $task = $this->task::create($request->all());
-        return $task;
+       return $task = $todo_list->tasks()->create($request->all());
+//        $request['todo_list_id'] = $todo_list->id;
+//        $task = $this->task::create($request->all());
     }
 
     public function destroy(Task $task)
