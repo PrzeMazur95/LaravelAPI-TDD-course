@@ -16,9 +16,10 @@ class ItemTest extends TestCase
     public function test_fetch_all_items_of_a_todo_list()
     {
         //preparation
+        $list = $this->createTodoList();
         $task = $this->createTask();
         //action
-        $response = $this->get(route('task.index'))->assertOk()->json();
+        $response = $this->get(route('todo-list.task.index', $list->id))->assertOk()->json();
         //assertion
         $this->assertEquals(1, count($response));
         $this->assertEquals($task->title, $response[0]['title']);
@@ -29,8 +30,9 @@ class ItemTest extends TestCase
     {
         //preparation - below make does not stores task in db, create do
         $task = Task::factory()->make();
+        $list = $this->createTodoList();
         //action
-        $this->postJson(route('task.store'), ['title'=> $task->title])
+        $this->postJson(route('todo-list.task.store', $list->id), ['title'=> $task->title])
         ->assertCreated();
         //assertion
         $this->assertDatabaseHas('tasks',['title'=> $task->title]);
