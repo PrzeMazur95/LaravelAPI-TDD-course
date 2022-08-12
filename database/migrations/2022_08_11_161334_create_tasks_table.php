@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->unsignedBigInteger('todo_list_id');
+            $table->string('status')->default('not_completed');
             $table->timestamps();
         });
     }
