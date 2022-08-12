@@ -13,7 +13,7 @@ class TaskCompletedTest extends TestCase
      *
      * @return void
      */
-    public function test_example()
+    public function test_a_task_can_be_completed()
     {
         $response = $this->get('/');
 
