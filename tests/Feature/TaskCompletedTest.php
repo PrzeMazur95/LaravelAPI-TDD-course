@@ -5,18 +5,18 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\Task;
 
 class TaskCompletedTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
+    use RefreshDatabase;
+
     public function test_a_task_can_be_completed()
     {
-        $response = $this->get('/');
+        $task = $this->createTask();
 
-        $response->assertStatus(200);
+        $this->patchJson(route('task.update', $task->id), ['status'=>Task::STARTED]);
+
+        $this->assertDatabaseHas('tasks', ['status' => Task::STARTED]);
     }
 }
