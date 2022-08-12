@@ -47,4 +47,14 @@ class ItemTest extends TestCase
         //assertion
         $this->assertDatabaseMissing('tasks', ['title' => $task->title]);
     }
+
+    public function test_if_we_could_update_a_task()
+    {
+        //preparation
+        $task = $this->createTask();
+        //action
+        $this->patchJson(route('task.update', $task->id), ['title' => 'updated title'])->assertOk();
+        //assertion
+        $this->assertDatabaseHas('tasks', ['title' => 'updated title']);
+    }
 }
