@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use app\Enums\TaskEnums;
 
 return new class extends Migration
 {
@@ -17,7 +18,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->unsignedBigInteger('todo_list_id');
-            $table->string('status')->default("not_started");
+            $table->string('status')->default(TaskEnums::NOT_STARED->value);
             $table->timestamps();
         });
     }
