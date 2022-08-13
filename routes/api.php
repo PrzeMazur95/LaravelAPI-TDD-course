@@ -20,4 +20,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('todo-list', TodoListController::class);
-Route::apiResource('task', TaskController::class);
+//it will not show route to show method,
+//shallow makes, that only that routes which must have id of list have it like this - todo-list/{todo_list}/task
+//so delete and update do not have it
+Route::apiResource('todo-list.task', TaskController::class)
+    ->except('show')
+    ->shallow();

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TodoList;
 use Illuminate\Http\Request;
 use App\Models\Task;
 use App\Http\Requests\StoreNewTaskRequest;
@@ -14,21 +15,28 @@ class TaskController extends Controller
     public function __construct(Task $task){
         $this->task = $task;
     }
-    public function index()
+    public function index(TodoList $todo_list)
     {
-        $tasks = $this->task::all();
+        $tasks = $todo_list->tasks;;
         return response($tasks);
     }
 
-    public function store(StoreNewTaskRequest $request)
+    public function store(StoreNewTaskRequest $request, TodoList $todo_list)
     {
-        $task = $this->task::create($request->all());
-        return $task;
+       return $task = $todo_list->tasks()->create($request->all());
+//        $request['todo_list_id'] = $todo_list->id;
+//        $task = $this->task::create($request->all());
     }
 
     public function destroy(Task $task)
     {
         $task->delete();
         return response('',Response::HTTP_NO_CONTENT);
+    }
+
+    public function update(Task $task, Request $request)
+    {
+        $task->update($request->all());
+        return response ($task);
     }
 }
