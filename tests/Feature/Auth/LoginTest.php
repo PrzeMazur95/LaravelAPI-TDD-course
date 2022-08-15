@@ -17,4 +17,9 @@ class LoginTest extends TestCase
 
         $this->assertArrayHasKey('token', $response->json());
     }
+
+    public function test_if_user_email_is_not_available_then_it_returns_error()
+    {
+        
+    }
 }
