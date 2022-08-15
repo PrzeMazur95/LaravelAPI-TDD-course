@@ -27,5 +27,7 @@ Route::apiResource('todo-list', TodoListController::class);
 Route::apiResource('todo-list.task', TaskController::class)
     ->except('show')
     ->shallow();
-//when you do ot have any function, you can use invoke method, it will call it automatically
+//when you do ot have any function, you can use invoke method, it will call it automatically, it will invke only this one funciton which is there
 Route::post('/register', RegisterController::class)->name('user.register');
+//when you do ot have any function, you can use invoke method, it will call it automatically, it will invke only this one funciton which is there
+Route::post('/login', LoginController::class)->name('user.logingister');

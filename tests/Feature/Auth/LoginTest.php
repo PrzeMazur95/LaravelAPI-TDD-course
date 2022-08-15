@@ -8,15 +8,13 @@ use Tests\TestCase;
 
 class LoginTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
-    public function test_example()
+    public function test_a_user_can_login_with_email_and_password()
     {
-        $response = $this->get('/');
+        $this->postJson(route('user.login'),[
+            'email' => 'matheo@gmail.com',
+            'password' => 'password'
+        ])->assertOk();
 
-        $response->assertStatus(200);
+        $this->assertArrayHasKey('token', $response->json());
     }
 }
