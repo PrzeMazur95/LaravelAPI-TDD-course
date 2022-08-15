@@ -18,9 +18,9 @@ class LoginController extends Controller
     }
     public function __invoke(LoginRequest $request)
     {
-        $user = $this->user::where(['email' => $request->email])->first();
+        $user = $this->user::whereEmail($request->email)->first();
 
-        if (!$user){
+        if (!$user || $request->password !== $user->password){
             return response('Credentials not match', Response::HTTP_UNAUTHORIZED);
         }
 

@@ -18,6 +18,7 @@ class LoginTest extends TestCase
         $response = $this->postJson(route('user.login'),[
             'email' => $user->email,
             'password' => $user->password
+
         ])->assertOk();
 
         $this->assertArrayHasKey('token', $response->json());
@@ -28,6 +29,16 @@ class LoginTest extends TestCase
         $response = $this->postJson(route('user.login'),[
             'email' => 'matheo@gmail.com',
             'password' => 'password'
+        ])->assertUnauthorized();
+    }
+
+    public function test_it_raise_error_if_password_is_inccorect()
+    {
+        $user = User::factory()->create();
+
+        $response = $this->postJson(route('user.login'),[
+            'email' => $user->email,
+            'password' => 'random'
         ])->assertUnauthorized();
     }
 }
