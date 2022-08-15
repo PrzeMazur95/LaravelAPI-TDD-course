@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\LoginRequest;
 use App\Models\User;
+use Illuminate\Http\Response;
 
 class LoginController extends Controller
 {
@@ -17,11 +18,11 @@ class LoginController extends Controller
     }
     public function __invoke(LoginRequest $request)
     {
-        $user = $this->user::where(['email', $request->email]);
+        $user = $this->user::where(['email' => $request->email])->first();
 
-        // if (!$user){
-        //     return response('Credentials not match', Response::HTTP_UNAUTHORIZED);
-        // }
+        if (!$user){
+            return response('Credentials not match', Response::HTTP_UNAUTHORIZED);
+        }
 
         return response([
             'token' => 'hello'
