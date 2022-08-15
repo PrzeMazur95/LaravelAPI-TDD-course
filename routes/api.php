@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\LoginController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -30,4 +31,4 @@ Route::apiResource('todo-list.task', TaskController::class)
 //when you do ot have any function, you can use invoke method, it will call it automatically, it will invke only this one funciton which is there
 Route::post('/register', RegisterController::class)->name('user.register');
 //when you do ot have any function, you can use invoke method, it will call it automatically, it will invke only this one funciton which is there
-// Route::post('/login', LoginController::class)->name('user.logingister');
+Route::post('/login', LoginController::class)->name('user.login');
