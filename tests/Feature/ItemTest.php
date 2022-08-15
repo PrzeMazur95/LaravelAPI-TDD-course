@@ -13,6 +13,12 @@ class ItemTest extends TestCase
     //runs db migrations before every test
     use RefreshDatabase;
 
+    public function setUp():void
+    {
+        parent::setUp();
+        $this->authUser();
+    }
+
     public function test_fetch_all_items_of_a_todo_list()
     {
         //preparation
