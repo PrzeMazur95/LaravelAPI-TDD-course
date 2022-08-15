@@ -15,10 +15,12 @@ class TodoListTest extends TestCase
 
     private $list;
 
+    //setUp is like construct, it runs every time you invoke a test
     public function setUp(): void
     {
         parent::setUp();
         $this->list = $this->createTodoList(['name' => 'my list']);
+        $this->authUser();
     }
 
     /**
