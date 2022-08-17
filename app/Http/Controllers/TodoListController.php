@@ -43,9 +43,8 @@ class TodoListController extends Controller
 
     public function store(TodoListNameRequiredRequest $request)
     {
-        $request['user_id'] = auth()->id();
-        $list = $this->TodoList::create($request->all());
-        return response($list, Response::HTTP_CREATED);
+        return auth()->user()->todo_lists()->create($request->validated());
+
     }
 
     public function destroy(TodoList $todo_list)
