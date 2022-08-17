@@ -26,7 +26,7 @@ class TodoListController extends Controller
      */
     public function index()
     {
-        $lists = $this->TodoList::all();
+        $lists = $this->TodoList::whereUserId(auth()->id())->get();
 
         return response($lists);
     }
