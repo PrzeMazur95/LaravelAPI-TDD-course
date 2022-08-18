@@ -20,8 +20,8 @@ class RegisterController extends Controller
     public function __invoke(RegisterRequest $request)
     {
         //validated - it will only take those values which is in registerRequest, it could be laso all(), but then you will take all data
-        $this->user::create($request->validated());
+        $userCreated = $this->user::create($request->validated());
         // User::create($request->all());
-        return response([],201);
+        return response($userCreated,201);
     }
 }
