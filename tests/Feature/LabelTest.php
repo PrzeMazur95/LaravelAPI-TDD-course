@@ -13,10 +13,9 @@ class LabelTest extends TestCase
      *
      * @return void
      */
-    public function test_example()
+    public function test_user_can_create_new_label()
     {
-        $response = $this->get('/');
-
-        $response->assertStatus(200);
+        $this->postJson(route('label.store', ['title'=>'my label', 'color' => 'red']))->assertCreated();
+        $this->databaseHas('labels',['title'=>'my label', 'color' => 'red']);
     }
 }
