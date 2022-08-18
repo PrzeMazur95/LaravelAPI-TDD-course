@@ -22,6 +22,9 @@ class RegisterController extends Controller
         //validated - it will only take those values which is in registerRequest, it could be laso all(), but then you will take all data
         $userCreated = $this->user::create($request->validated());
         // User::create($request->all());
-        return response($userCreated,201);
+        if($userCreated){
+            return response($userCreated,201);
+        }
+            return response([],400);
     }
 }
