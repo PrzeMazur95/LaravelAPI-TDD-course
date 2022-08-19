@@ -10,6 +10,6 @@ class LabelController extends Controller
 {
     public function store(StoreLabelRequest $request)
     {
-        //
+        return Label::create($request->validated());
     }
 }
