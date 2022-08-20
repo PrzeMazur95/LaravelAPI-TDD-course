@@ -30,6 +30,10 @@ abstract class TestCase extends BaseTestCase
         return User::factory()->create($args);
     }
 
+    public function createLabel($args = []){
+        return Label::factory()->create($args);
+    }
+
     public function authUser()
     {
         $user = $this->createUser();
