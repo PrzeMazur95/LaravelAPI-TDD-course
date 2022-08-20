@@ -4,6 +4,7 @@ namespace Tests;
 
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use App\Models\TodoList;
+use App\Models\Label;
 use App\Models\Task;
 use App\Models\User;
 use Laravel\Sanctum\Sanctum;
