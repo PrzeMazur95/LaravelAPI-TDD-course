@@ -25,7 +25,7 @@ class StoreLabelRequest extends FormRequest
     {
         return [
             'title'=>'required',
-            'color'=>'required'
+            'color'=>'required',
         ];
     }
 }

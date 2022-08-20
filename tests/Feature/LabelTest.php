@@ -15,6 +15,6 @@ class LabelTest extends TestCase
         $this->authUser();
 
         $this->postJson(route('label.store'), ['title'=>'my label', 'color' => 'red'])->assertCreated();
-        $this->databaseHas('labels',['title'=>'my label', 'color' => 'red']);
+        $this->assertDatabaseHas('labels',['title'=>'my label', 'color' => 'red']);
     }
 }
