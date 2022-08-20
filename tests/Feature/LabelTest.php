@@ -12,9 +12,10 @@ class LabelTest extends TestCase
 
     public function test_user_can_create_new_label()
     {
+        $label - Label::factory()->raw();
         $this->authUser();
 
-        $this->postJson(route('label.store'), ['title'=>'my label', 'color' => 'red'])->assertCreated();
-        $this->assertDatabaseHas('labels',['title'=>'my label', 'color' => 'red']);
+        $this->postJson(route('label.store'), $label)->assertCreated();
+        $this->assertDatabaseHas('labels',['title'=>$label->title, 'color' => $label->color]);
     }
 }
