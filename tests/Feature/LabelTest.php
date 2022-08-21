@@ -11,6 +11,13 @@ class LabelTest extends TestCase
 {
     use RefreshDatabase;
 
+    public function setUp():void
+    {
+        parent::setUp();
+        $this->authUser();
+        
+    }
+
     public function test_user_can_create_new_label()
     {
         $label = Label::factory()->raw();
@@ -23,7 +30,6 @@ class LabelTest extends TestCase
     public function test_user_can_delete_label()
     {
         $label = $this->createLabel();
-        $this->authUser();
 
         $this->deleteJson(route('label.destroy', $label))->assertNoContent();
         $this->assertDatabaseMissing('labels', ['title'=>$label['title'], 'color' => $label['color']]);
