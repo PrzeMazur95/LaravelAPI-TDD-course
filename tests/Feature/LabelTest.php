@@ -22,7 +22,7 @@ class LabelTest extends TestCase
 
     public function test_user_can_delete_label()
     {
-
+        $label = $this->createLabel();
     }
 
 
