@@ -12,4 +12,10 @@ class LabelController extends Controller
     {
         return Label::create($request->validated());
     }
+
+    public function destroy(Label $label)
+    {
+        $label->delete();
+        return response('',204);
+    }
 }
