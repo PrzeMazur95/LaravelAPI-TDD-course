@@ -19,4 +19,11 @@ class LabelTest extends TestCase
         $this->postJson(route('label.store'), $label)->assertCreated();
         $this->assertDatabaseHas('labels',['title'=>$label['title'], 'color' => $label['color']]);
     }
+
+    public function test_user_can_delete_label()
+    {
+
+    }
+
+
 }
