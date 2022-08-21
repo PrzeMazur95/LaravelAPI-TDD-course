@@ -35,5 +35,10 @@ class LabelTest extends TestCase
         $this->assertDatabaseMissing('labels', ['title'=>$label['title'], 'color' => $label['color']]);
     }
 
+    public function test_user_can_update_label()
+    {
+        
+    }
+
 
 }
