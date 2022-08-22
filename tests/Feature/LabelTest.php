@@ -45,7 +45,7 @@ class LabelTest extends TestCase
 
     public function test_fetch_all_label_for_a_user()
     {
-        
+        $this->authUser()->labels;
     }
 
 
