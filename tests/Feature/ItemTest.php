@@ -56,9 +56,8 @@ class ItemTest extends TestCase
                 //preparation - below make does not stores task in db, create do
                 $task = Task::factory()->make();
                 $list = $this->createTodoList();
-                $label=$this->createLabel();
                 //action
-                $this->postJson(route('todo-list.task.store', [$list->id]), ['title'=> $task->title])
+                $this->postJson(route('todo-list.task.store', [$list->id, 'label_id'=>null]), ['title'=> $task->title, 'label_id'=>null])
                 ->assertCreated();
                 //assertion
                 $this->assertDatabaseHas('tasks',[
