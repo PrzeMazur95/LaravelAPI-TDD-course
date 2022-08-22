@@ -43,5 +43,10 @@ class LabelTest extends TestCase
         $this->assertDatabaseHas('labels', ['title'=>'updated title', 'color' =>'updated color']);
     }
 
+    public function test_fetch_all_label_for_a_user()
+    {
+        
+    }
+
 
 }
