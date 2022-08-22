@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\Label;
 
 class User extends Authenticatable
 {
@@ -46,5 +47,10 @@ class User extends Authenticatable
     public function todo_lists(): HasMany
     {
         return $this->hasMany(TodoList::class);
+    }
+
+    public function label(): HasMany
+    {
+        return $this->hasMany(Label::class);
     }
 }
