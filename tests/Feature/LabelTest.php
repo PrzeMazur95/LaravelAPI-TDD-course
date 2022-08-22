@@ -37,7 +37,10 @@ class LabelTest extends TestCase
 
     public function test_user_can_update_label()
     {
-        
+        $label = $this->createLabel();
+
+        $this->patchJson(route('label.update', $label), ['title'=>'updated title', 'color'=>'updated color'])->assertOk();
+        $this->assertDatabaseHas('labels', ['title'=>'updated title', 'color' =>'updated color']);
     }
 
 
