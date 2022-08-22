@@ -18,4 +18,10 @@ class LabelController extends Controller
         $label->delete();
         return response('',204);
     }
+
+    public function update(Label $label, StoreLabelRequest $request)
+    {
+        $label->update($request->validated());
+        return response($label, 200);
+    }
 }
