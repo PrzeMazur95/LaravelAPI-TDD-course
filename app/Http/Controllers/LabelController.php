@@ -8,6 +8,10 @@ use App\Http\Requests\StoreLabelRequest;
 
 class LabelController extends Controller
 {
+    public function index()
+    {
+        return auth()->user()->label;
+    }
     public function store(StoreLabelRequest $request)
     {
         return auth()->user()->label()->create($request->validated());
