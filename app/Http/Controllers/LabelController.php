@@ -10,7 +10,7 @@ class LabelController extends Controller
 {
     public function store(StoreLabelRequest $request)
     {
-        return Label::create($request->validated());
+        return auth()->user()->label()->create($request->validated());
     }
 
     public function destroy(Label $label)
