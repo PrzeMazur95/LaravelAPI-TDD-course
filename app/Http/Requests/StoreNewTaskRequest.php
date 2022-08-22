@@ -25,6 +25,7 @@ class StoreNewTaskRequest extends FormRequest
     {
         return [
             'title' => 'required',
+            'label_id' => 'required'
         ];
     }
 }

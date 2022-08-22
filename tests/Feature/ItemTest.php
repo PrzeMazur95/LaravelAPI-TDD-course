@@ -23,7 +23,8 @@ class ItemTest extends TestCase
     {
         //preparation
         $list = $this->createTodoList();
-        $task = $this->createTask(['todo_list_id' => $list->id]);
+        $label = $this->createLabel();
+        $task = $this->createTask(['todo_list_id' => $list->id, 'label_id'=>$label->id]);
         //action
         $response = $this->get(route('todo-list.task.index', $list->id))->assertOk()->json();
         //assertion
@@ -38,8 +39,9 @@ class ItemTest extends TestCase
         //preparation - below make does not stores task in db, create do
         $task = Task::factory()->make();
         $list = $this->createTodoList();
+        $label=$this->createLabel();
         //action
-        $this->postJson(route('todo-list.task.store', $list->id), ['title'=> $task->title])
+        $this->postJson(route('todo-list.task.store', [$list->id, $label->id]), ['title'=> $task->title, 'label_id'=>$task->label_id])
         ->assertCreated();
         //assertion
         $this->assertDatabaseHas('tasks',[

@@ -14,7 +14,8 @@ class TodoListTest extends TestCase
     public function test_a_todo_list_can_has_many_tasks()
     {
         $list = $this->createTodoList();
-        $task = $this->createTask(['todo_list_id' => $list->id]);
+        $label = $this->createLabel();
+        $task = $this->createTask(['todo_list_id' => $list->id, 'label_id'=>$label->id]);
 
         $this->assertInstanceOf(Collection::class, $list->tasks);
         $this->assertInstanceOf(Task::class, $list->tasks->first());
@@ -24,7 +25,8 @@ class TodoListTest extends TestCase
     {
         //preparation
         $list = $this->createTodoList();
-        $task = $this->createTask(['todo_list_id' => $list->id]);
+        $label = $this->createLabel();
+        $task = $this->createTask(['todo_list_id' => $list->id, 'label_id'=>$label->id]);
         $anotherTask = $this->createTask();
         //action
         $list->delete();
