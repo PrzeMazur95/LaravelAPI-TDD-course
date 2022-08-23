@@ -41,12 +41,13 @@ class ItemTest extends TestCase
         $list = $this->createTodoList();
         $label=$this->createLabel();
         //action
-        $this->postJson(route('todo-list.task.store', [$list->id, $label->id]), ['title'=> $task->title, 'label_id'=>$task->label_id])
+        $this->postJson(route('todo-list.task.store', [$list->id]), ['title'=> $task->title, 'label_id'=>$task->label_id])
         ->assertCreated();
         //assertion
         $this->assertDatabaseHas('tasks',[
             'title'=> $task->title,
-            'todo_list_id' => $list->id
+            'todo_list_id' => $list->id,
+            'label_id' => $task->label_id
         ]);
     }
 
