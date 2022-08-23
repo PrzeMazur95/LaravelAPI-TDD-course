@@ -24,8 +24,7 @@ class StoreNewTaskRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
-            'label_id' => 'required'
+            'title' => 'required'
         ];
     }
 }
