@@ -51,6 +51,11 @@ class ItemTest extends TestCase
         ]);
     }
 
+    public function test_if_we_could_add_new_task_without_label()
+    {
+
+    }
+
     public function test_if_we_colud_delete_a_task()
     {
         //preapration
