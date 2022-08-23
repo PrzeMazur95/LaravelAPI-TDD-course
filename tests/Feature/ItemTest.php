@@ -53,7 +53,18 @@ class ItemTest extends TestCase
 
     public function test_if_we_could_add_new_task_without_label()
     {
-
+                //preparation - below make does not stores task in db, create do
+                $task = Task::factory()->make();
+                $list = $this->createTodoList();
+                $label=$this->createLabel();
+                //action
+                $this->postJson(route('todo-list.task.store', [$list->id]), ['title'=> $task->title])
+                ->assertCreated();
+                //assertion
+                $this->assertDatabaseHas('tasks',[
+                    'title'=> $task->title,
+                    'todo_list_id' => $list->id
+                ]);
     }
 
     public function test_if_we_colud_delete_a_task()
