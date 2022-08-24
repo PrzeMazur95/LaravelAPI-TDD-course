@@ -25,7 +25,7 @@ class TaskController extends Controller
     public function store(StoreNewTaskRequest $request, TodoList $todo_list, Label $label)
     {
         // dd($request->validated());
-       return $task = $todo_list->tasks()->create($request->validated());
+       return $task = $todo_list->tasks()->create($request->all());
 //        $request['todo_list_id'] = $todo_list->id;
 //        $task = $this->task::create($request->all());
     }
